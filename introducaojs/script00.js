@@ -10,7 +10,7 @@ console.log(boasvindas)
 
 let string = " variavel de texto";//Sempre entre aspas simples ou asplas duplas
 let numero1 = 42;//numero simples
-let nuero2 = 10.65;//numero decimsl
+let nuero2 = 10.65;//numero decimal
 let numero3 = "2";//numero em texto
 let boolean = true;
 let boolean2 = false;
