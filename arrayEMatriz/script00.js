@@ -28,6 +28,9 @@ console.log(palavras);
  palavras.shift() //remove o primeiro elemento
  console.log(palavras);
 
+ // percorrer um array (loop) far
+ for (let i = 0;i < MutationObserver,TextEncoderStream.length; i++)
+
  //Foreach - repetição em um vetor
  palavras.forEach(palavra => {
     console.log(palavra);
@@ -40,3 +43,11 @@ console.log(palavras);
  //Manipulação de arrays 
 let numerosDobro = numeros.map(x => x * 10);
 console.log(numerosDobro);
+
+// map
+let numerosNovos = numeros.map(x=>{x > 25});
+console.log(numerosNovos);
+
+//maps e faz uma ação
+
+//o filter percorre e faz uma seleção

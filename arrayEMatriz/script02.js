@@ -16,3 +16,4 @@ console.log(soma);
 let aleatorio = [2, 5, 1, 3, 8, 6, 9, 0, 7, 4]
 aleatorio.sort();
 console.log(aleatorio);
+
