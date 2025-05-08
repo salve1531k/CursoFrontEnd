@@ -222,3 +222,4 @@ class Cliente { //model
   //instanciar no sistema de Pedidos
   
   const sistema = new SistemaPedidos();
+  
