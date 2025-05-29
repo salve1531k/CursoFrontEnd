@@ -28,5 +28,28 @@
       "descricao": "Trabalhar com Nuvem AWS",
       "salario": 8000
     }
+  ],
+  "curriculos": [
+    {
+      "id": "02",
+      "nome": "Matheus",
+      "descricao": "222",
+      "referencias": "ss",
+      "area": "0ti"
+    },
+    {
+      "id": 0,
+      "nome": "",
+      "descricao": "",
+      "referencias": "",
+      "area": "0"
+    },
+    {
+      "id": 0,
+      "nome": "",
+      "descricao": "",
+      "referencias": "",
+      "area": "0"
+    }
   ]
 }
