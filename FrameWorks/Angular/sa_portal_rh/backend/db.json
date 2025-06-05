@@ -22,7 +22,7 @@
       "salario": 10000
     },
     {
-      "id": 4,
+      "id": "4",
       "nome": "Engenheiro de Nuvem",
       "foto": "foto4.jpg",
       "descricao": "Trabalhar com Nuvem AWS",
@@ -31,25 +31,52 @@
   ],
   "curriculos": [
     {
-      "id": "02",
+      "id": "0e8e",
+      "cpf": "65757857898",
       "nome": "Matheus",
       "descricao": "222",
       "referencias": "ss",
       "area": "0ti"
     },
     {
-      "id": 0,
-      "nome": "",
-      "descricao": "",
-      "referencias": "",
-      "area": "0"
+      "id": "0fde",
+      "cpf": "65757857898",
+      "nome": "Matheus",
+      "descricao": "ion",
+      "referencias": "jlnln",
+      "area": "0oinoin"
     },
     {
-      "id": 0,
-      "nome": "",
-      "descricao": "",
-      "referencias": "",
-      "area": "0"
+      "id": "60cf",
+      "cpf": "65757857898",
+      "nome": "Matheus",
+      "descricao": "222",
+      "referencias": "jlnln",
+      "area": "0ti"
+    },
+    {
+      "id": "3722",
+      "cpf": "44707719880",
+      "nome": "Matheus",
+      "descricao": "ion",
+      "referencias": "jlnln",
+      "area": "0oinoin"
+    },
+    {
+      "id": "308b",
+      "cpf": "34534512312",
+      "nome": "123123123",
+      "descricao": "123123",
+      "referencias": "435",
+      "area": "234"
+    },
+    {
+      "id": "02",
+      "cpf": "65757857898",
+      "nome": "Matheus",
+      "descricao": "222",
+      "referencias": "ss",
+      "area": "0ti"
     }
   ]
 }

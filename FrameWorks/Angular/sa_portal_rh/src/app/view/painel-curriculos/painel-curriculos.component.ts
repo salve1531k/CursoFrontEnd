@@ -8,70 +8,96 @@ import { CurriculosService } from 'src/app/services/curriculo.service';
   styleUrls: ['./painel-curriculos.component.scss'],
 })
 export class PainelCurriculosComponent implements OnInit {
-  public curriculo: Curriculo = new Curriculo(0, '', '', '', "0"); //rastrear os dados no formulário por interpolação
-
+  curriculo: Curriculo = new Curriculo('','', '', '', '', '');
   public curriculos: Curriculo[] = [];
-  //armazenar os dados do API -json
 
-  constructor(private _curriculosService: CurriculosService) {} // aplicando o service no Construtor
+  constructor(private _curriculosService: CurriculosService) {}
 
   ngOnInit(): void {
     this.listarCurriculos();
   }
 
+
+
   listarCurriculos() {
-    // Lista as curriculos do servidor usando o serviço 'CurriculoService'
-    this._curriculosService.getCurriculos().subscribe((retornaCurriculo) => {
-      this.curriculos = retornaCurriculo.map((item) => {
-        // Mapeia os dados retornados para objetos 'Curriculo'
-        return new Curriculo(
-          item.id,
-          item.nome,
-          item.descricao,
-          item.referencias,
-          item.area
-        );
-      });
-    });
+    this._curriculosService.getCurriculos().subscribe(
+      (retornaCurriculo) => {
+        console.log('Curriculos retornados da API:', retornaCurriculo);
+        this.curriculos = retornaCurriculo.map((item: any) => {
+          return new Curriculo(
+            item.id,
+            item.cpf,
+            item.nome,
+            item.descricao,
+            item.referencias,
+            item.area
+          );
+        });
+      },
+      (error) => {
+        console.error('Erro ao carregar curriculos:', error);
+      }
+    );
   }
 
-  //Listar unica Curriculo
-  listarCurriculoUnica(curriculo:Curriculo){
-    //Função para listar curriculo unica, para edição no formulário
+  listarCurriculoUnica(curriculo: Curriculo) {
     this.curriculo = curriculo;
-    //A curriculo clicada é mostrada no formulário, =>
   }
 
-  //cadastrar Curriculo
-  cadastrar(){
-    this._curriculosService.cadastrarCurriculo(this.curriculo).subscribe(
-      ()=>{
-        this.curriculo = new Curriculo(0,"","","","0");//limpara os campos do formulário
-        this.listarCurriculos();
-        alert("Curriculo Cadastrada com Sucesso");
-      }, (err) => { console.error("Exception: ",err);}
-    );
+cadastrar() {
+  if (!this.curriculo.cpf || !/^\d{11}$/.test(this.curriculo.cpf)) {
+    alert('CPF inválido. Deve conter exatamente 11 dígitos numéricos.');
+    return;
   }
 
-  // atualizar Curriculos
-  atualizar(id:any){
-    this._curriculosService.atualizarCurriculo(id, this.curriculo).subscribe(
-      ()=>{
-        this.curriculo = new Curriculo(0,"","","","0");
-        this.listarCurriculos();
-        alert("Curriculo Atualizada com Sucesso!!!");
-      }, (err) => {console.error("Exception: ",err);}
-    );
-  }
-
-  //deletar Curriculos
-  excluir(id:any){
-    this._curriculosService.removerCurriculo(id).subscribe(
-      ()=>{
-        this.listarCurriculos();
-        alert("Curriculo Deletada com Sucesso!!!");
-      }, (err) => {console.error("Exception: ",err);}
-    );
-  }
-
+  this._curriculosService.cadastrarCurriculo(this.curriculo).subscribe(
+    () => {
+      this.curriculo = new Curriculo('','', '', '', '', '');
+      this.listarCurriculos();
+      alert('Currículo cadastrado com sucesso!');
+    },
+    (err) => {
+      console.error('Erro ao cadastrar currículo:', err);
+      alert('Erro ao cadastrar currículo.');
+    }
+  );
 }
+
+
+  atualizar(id: any) {
+    this._curriculosService.atualizarCurriculo(id, this.curriculo).subscribe(
+      () => {
+        this.curriculo = new Curriculo('','', '', '', '', '');
+        this.listarCurriculos();
+        alert('Curriculo Atualizado com Sucesso!!!');
+      },
+      (err) => {
+        console.error('Exception:', err);
+      }
+    );
+  }
+
+  excluir(curriculo: Curriculo) {
+    console.log('Tentando excluir:', curriculo); // Adicione isto para depurar
+    if (!confirm(`Tem certeza que deseja excluir o currículo de CPF ${curriculo.cpf}?`)) {
+      return;
+    }
+
+    this._curriculosService.removerCurriculo(curriculo.id).subscribe(
+      () => {
+        alert('Currículo deletado com sucesso!');
+        this.listarCurriculos();
+
+        // Limpa o formulário se o currículo excluído for o que está carregado
+        if (this.curriculo.cpf === curriculo.cpf) {
+          this.curriculo = new Curriculo('','', '', '', '', '');
+        }
+      },
+      (err) => {
+        console.error('Erro ao deletar currículo:', err);
+        alert('Erro ao deletar currículo, veja console para detalhes.');
+      }
+    );
+  }
+}
+

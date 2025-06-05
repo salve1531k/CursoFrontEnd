@@ -1,55 +1,99 @@
 <h2>Cadastrar</h2>
 <form #curriculoForm="ngForm">
-  <label>Id</label>
-  <input type="text" name="id" [(ngModel)]="curriculo.id" required #id="ngModel"> <br>
-  <div *ngIf="id.invalid && id.touched" style="color:red;">Id é obrigatório.</div>
+  <label>Cpf</label>
+  <input
+    type="text"
+    name="cpf"
+    [(ngModel)]="curriculo.cpf"
+    required
+    pattern="^[0-9]{11}$"
+    #cpf="ngModel"
+  />
+  <div style="color: red;" *ngIf="cpf.invalid && cpf.touched">
+    <div *ngIf="cpf.errors?.['required']">CPF é obrigatório.</div>
+    <div *ngIf="cpf.errors?.['pattern']">CPF deve conter exatamente 11 números.</div>
+  </div>
 
   <label>Nome</label>
-  <input type="text" name="nome" [(ngModel)]="curriculo.nome" required #nome="ngModel"> <br>
-  <div *ngIf="nome.invalid && nome.touched" style="color:red;">Nome é obrigatório.</div>
+  <input
+    type="text"
+    name="nome"
+    [(ngModel)]="curriculo.nome"
+    required
+    #nome="ngModel"
+  />
+  <div style="color: red;" *ngIf="nome.invalid && nome.touched">Nome é obrigatório.</div>
 
   <label>Descrição</label>
-  <input type="text" name="descricao" [(ngModel)]="curriculo.descricao" required #descricao="ngModel"> <br>
-  <div *ngIf="descricao.invalid && descricao.touched" style="color:red;">Descrição é obrigatória.</div>
+  <input
+    type="text"
+    name="descricao"
+    [(ngModel)]="curriculo.descricao"
+    required
+    #descricao="ngModel"
+  />
+  <div style="color: red;" *ngIf="descricao.invalid && descricao.touched">Descrição é obrigatória.</div>
 
-  <label>Referencias</label>
-  <input type="text" name="referencias" [(ngModel)]="curriculo.referencias" required #referencias="ngModel"> <br>
-  <div *ngIf="referencias.invalid && referencias.touched" style="color:red;">Referências são obrigatórias.</div>
-  
-  <label>Area</label>
-  <input type="text" name="area" [(ngModel)]="curriculo.area" required #area="ngModel"> <br>
-  <div *ngIf="area.invalid && area.touched" style="color:red;">Área é obrigatória.</div>
+  <label>Referências</label>
+  <input
+    type="text"
+    name="referencias"
+    [(ngModel)]="curriculo.referencias"
+    required
+    #referencias="ngModel"
+  />
+  <div style="color: red;" *ngIf="referencias.invalid && referencias.touched">Referências são obrigatórias.</div>
 
-  <button type="button" (click)="cadastrar()" [disabled]="curriculoForm.invalid">Cadastrar Curriculo</button>
-  <button type="button" (click)="atualizar(curriculo.id)" [disabled]="curriculoForm.invalid">Atualizar Curriculo</button>
-  <button type="button" (click)="excluir(curriculo.id)">Excluir Curriculo</button>
+  <label>Área</label>
+  <input
+    type="text"
+    name="area"
+    [(ngModel)]="curriculo.area"
+    required
+    #area="ngModel"
+  />
+  <div style="color: red;" *ngIf="area.invalid && area.touched">Área é obrigatória.</div>
+
+  <button type="button" (click)="cadastrar()" [disabled]="curriculoForm.invalid">
+    Cadastrar Currículo
+  </button>
+  <button type="button" (click)="excluir(curriculo)" [disabled]="!curriculo.cpf">
+    Excluir Currículo
+  </button>
 </form>
 
-<!-- tabela com as curriculos já cadastradas -->
- <section class="listar-curriculos">
+<section class="listar-curriculos" *ngIf="curriculos.length > 0; else noData">
   <table class="table">
     <thead>
       <tr>
         <th>Código do Curriculo</th>
         <th>Curriculo</th>
-        <th>Descrição da curriculo </th>
+        <th>Descrição da Curriculo</th>
         <th>Referencias</th>
+        <th>Área</th>
         <th>Ação</th>
       </tr>
     </thead>
     <tbody>
       <tr class="curriculo-row" *ngFor="let curriculo of curriculos">
-        <td>{{curriculo.id}}</td>
-        <td>{{curriculo.nome}}</td>
-        <td>{{curriculo.descricao}}</td>
-        <td>{{curriculo.referencias}}</td>
-        <td>{{curriculo.area}}</td>
+        <td>{{ curriculo.cpf }}</td>
+        <td>{{ curriculo.nome }}</td>
+        <td>{{ curriculo.descricao }}</td>
+        <td>{{ curriculo.referencias }}</td>
+        <td>{{ curriculo.area }}</td>
         <td>
-          <button class="btn-listar" type="button" (click)="listarCurriculoUnica(curriculo)">Listar</button>
+          <button class="btn-listar" type="button" (click)="listarCurriculoUnica(curriculo)">
+            Listar
+          </button>
+          <button class="btn-excluir" type="button" (click)="excluir(curriculo)">Excluir</button>
         </td>
       </tr>
     </tbody>
   </table>
- </section>
+</section>
 
- <div class="rodape"></div>
+<ng-template #noData>
+  <p>Nenhum currículo cadastrado.</p>
+</ng-template>
+
+<div class="rodape"></div>

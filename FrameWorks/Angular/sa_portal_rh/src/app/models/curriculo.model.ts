@@ -1,60 +1,32 @@
 export class Curriculo {
-  //atributos
-  // id: number = 0;
-  // nome: string = "";
-  // foto: string = "";
-  // descricao: string = "";
-  // salario: number = 0;
-
-  // constructor(id:number, nome:string, foto:string, descricao: string, salario:number){
-  //   this.id = id,
-  //   this.nome = nome;
-  //   this.foto = foto;
-  //   this.descricao = descricao
-  //   this.salario = salario
-  // }
-
-  // ^ forma classica de criação de classe
-
   constructor(
-    public id: number,
+    public id: string,
+    public cpf: string,
     public nome: string,
     public descricao: string,
     public referencias: string,
     public area: string
   ) {}
 
-  // ^ forma encurtada de criação de classe
-
-  // getter and setter -> quando os atributos forem privados (encapsulamento)
-  // getId():number{
-  //   return this.id;
-  // }
-  // setId(id:number): void{
-  //   this.id = id
-  // }
-
-  //toMap Obj -> Api
-  toMap(): {[key:string]:any} {
-    return{
+  toMap(): {[key:string]:any } {
+    return {
       id: this.id,
+      cpf: this.cpf,
       nome: this.nome,
       descricao: this.descricao,
       referencias: this.referencias,
       area: this.area
-    }
+    };
   }
 
-  //fromMap API -> OBJ
- static fromMap(map:any):Curriculo{
+  static fromMap(map: any): Curriculo {
     return new Curriculo(
       map.id,
+      map.cpf,
       map.nome,
       map.descricao,
       map.referencias,
       map.area
-    )
+    );
   }
-
-
 }

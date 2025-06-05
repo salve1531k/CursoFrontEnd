@@ -23,6 +23,7 @@ export class CurriculosComponent implements OnInit{
           (item) => {
             return new Curriculo(
               item.id,
+              item.cpf,
               item.nome,
               item.descricao,
               item.referencias,

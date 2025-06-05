@@ -1,6 +1,6 @@
 .navbar {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   padding: 1rem 1.5rem;
   background-color: #f8f8f8;
@@ -41,11 +41,13 @@
 
       .navLink{
         padding: 0.8rem 0;
-        border-top: 1px solid rgba(0, 0, 0, 0.05);
+        border-top: 1px solid rgba(255, 0, 0, 0.05)
       }
+
       &:last-child{
         border-bottom: 1px solid rgba(0, 0, 0, 0.05);
       }
+
     }
 
 
