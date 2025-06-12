@@ -31,30 +31,6 @@
   ],
   "curriculos": [
     {
-      "id": "0e8e",
-      "cpf": "65757857898",
-      "nome": "Matheus",
-      "descricao": "222",
-      "referencias": "ss",
-      "area": "0ti"
-    },
-    {
-      "id": "0fde",
-      "cpf": "65757857898",
-      "nome": "Matheus",
-      "descricao": "ion",
-      "referencias": "jlnln",
-      "area": "0oinoin"
-    },
-    {
-      "id": "60cf",
-      "cpf": "65757857898",
-      "nome": "Matheus",
-      "descricao": "222",
-      "referencias": "jlnln",
-      "area": "0ti"
-    },
-    {
       "id": "3722",
       "cpf": "44707719880",
       "nome": "Matheus",
@@ -77,6 +53,22 @@
       "descricao": "222",
       "referencias": "ss",
       "area": "0ti"
+    },
+    {
+      "id": "",
+      "cpf": "65757857898",
+      "nome": "Matheus",
+      "descricao": "ion",
+      "referencias": "jlnln",
+      "area": "0oinoin"
+    },
+    {
+      "id": "",
+      "cpf": "65757857898",
+      "nome": "Matheus",
+      "descricao": "ion",
+      "referencias": "jlnln",
+      "area": "0oinoin"
     }
   ]
 }
