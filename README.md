@@ -9,15 +9,15 @@ graph TD
         UI
     end
 
-    subgraph Cliente["React"]
+    subgraph Front["React"]
         Frontend
     end
 
-    subgraph Cliente["API"]
+    subgraph Back["API"]
         BackEnd
     end
 
-    subgraph Cliente["MongoDB"]
+    subgraph Banco["MongoDB"]
         BD
     end
     %% fluxo
