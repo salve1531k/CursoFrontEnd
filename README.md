@@ -20,6 +20,7 @@ graph TD
     subgraph Banco["MongoDB"]
         BD
     end
+
     %% fluxo
 
     UI-->FrontEnd
@@ -30,4 +31,33 @@ graph TD
     FrontEnd-->UI
 
 
+```
+
+### Diagrama de Fluxo de Arquitetura para um Projeto Next
+
+```mermaid 
+graph TD
+    subgraph Cliente["Navegador"]
+        UI
+    end
+    
+    subgraph Front/Back["Next/React"]
+        FrontEnd
+    
+        BackEnd
+    end
+    
+    subgraph Banco["MongoDB"]
+        BD
+    end
+
+    %% fluxo
+
+    UI-->FrontEnd
+    FrontEnd-->BackEnd
+    BackEnd-->BD
+    BD-->BackEnd
+    BackEnd-->FrontEnd
+    FrontEnd-->UI
+    
 ```
