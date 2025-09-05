@@ -1,4 +1,4 @@
-var prompt = require("prompt-sync")();
+code .Numbervar prompt = require("prompt-sync")();
 letnotas = [];
 
 function inserirNotas(){
