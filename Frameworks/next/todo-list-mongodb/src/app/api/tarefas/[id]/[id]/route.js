@@ -1,29 +1,48 @@
-//PUT e DELETE
-
+import Tarefa from "@/models/Tarefa";
 import connectMongo from "@/services/mongpodb";
+import { NextResponse } from "next/server";
 
-export async function PUT(req, {params}){ //pegar o ID dos parametros
-    try {
-        await connectMongo();
-        const data = await req.json();
-        const tarefa =  await Tarefa.findByIdAndUpdate(
-            params.id, //pegar o id dos parametros
-            data, //dados que serão atualizados
-            {new: true, runValidators: true} //retorna a tarefa atualizada
-
-        );
-        if(!tarefa){
-            return NextResponse.json(
-                {error: "Tarefa não encontrada"},
-                {status:404}
-            );
-        }
-    } catch (error) {
-        return NextResponse.json(
-            {error: "Erro ao Atualizar a Tarefa"},
-            {status:500}
-        );
+// Atualizar tarefa (PUT)
+export async function PUT(req, { params }) {
+  try {
+    await connectMongo();
+    const data = await req.json();
+    const tarefa = await Tarefa.findByIdAndUpdate(
+      params.id,
+      data,
+      { new: true, runValidators: true }
+    );
+    if (!tarefa) {
+      return NextResponse.json(
+        { error: "Tarefa não encontrada" },
+        { status: 404 }
+      );
     }
+    return NextResponse.json(tarefa, { status: 200 });
+  } catch (error) {
+    return NextResponse.json(
+      { error: "Erro ao Atualizar a Tarefa" },
+      { status: 500 }
+    );
+  }
 }
 
-//DELETE
+// Deletar tarefa (DELETE)
+export async function DELETE(req, { params }) {
+  try {
+    await connectMongo();
+    const tarefa = await Tarefa.findByIdAndDelete(params.id);
+    if (!tarefa) {
+      return NextResponse.json(
+        { error: "Tarefa não encontrada" },
+        { status: 404 }
+      );
+    }
+    return NextResponse.json(tarefa, { status: 200 });
+  } catch (error) {
+    return NextResponse.json(
+      { error: "Erro ao deletar a Tarefa" },
+      { status: 500 }
+    );
+  }
+}
