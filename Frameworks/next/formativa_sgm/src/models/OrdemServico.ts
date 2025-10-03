@@ -1,12 +1,17 @@
 import mongoose, { Document, Model, Schema } from "mongoose";
 
+import { IEquipamento } from './Equipamento';
+import { IUsuario } from './Usuario';
+
 export interface IOrdemServico extends Document {
     _id: string;
     titulo: string;
     descricao: string;
-    equipamento: mongoose.Types.ObjectId;
-    atribuidoPara: mongoose.Types.ObjectId;
+    equipamento: mongoose.Types.ObjectId | IEquipamento;
+    atribuidoPara: mongoose.Types.ObjectId | IUsuario;
     status: string;
+    createdAt?: Date;
+    updatedAt?: Date;
 }
 
 const OrdemServicoSchema: Schema<IOrdemServico> = new Schema({
