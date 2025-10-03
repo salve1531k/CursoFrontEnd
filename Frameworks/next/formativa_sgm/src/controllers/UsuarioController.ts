@@ -26,10 +26,22 @@ export class UsuarioController {
     static async create(request: NextRequest) {
         try {
             const data = await request.json();
+            if (!data.username || !data.password || !data.tipo) {
+                return NextResponse.json({ success: false, error: "Preencha todos os campos" }, { status: 400 });
+            }
+            // Verifica se já existe
+            const exists = await UsuarioService.getAllUsuarios();
+            if (exists.some(u => u.username === data.username)) {
+                return NextResponse.json({ success: false, error: "Usuário já existe" }, { status: 409 });
+            }
             const usuario = await UsuarioService.createUsuario(data);
-            return NextResponse.json(usuario, { status: 201 });
-        } catch (error) {
-            return NextResponse.json({ error: 'Failed to create usuario' }, { status: 500 });
+            return NextResponse.json({ success: true, data: { id: usuario._id, username: usuario.username, tipo: usuario.tipo } }, { status: 201 });
+        } catch (error: any) {
+            console.error("Erro ao cadastrar usuário:", error);
+            let msg = 'Erro ao cadastrar usuário';
+            if (error?.message) msg = error.message;
+            if (error?.code === 11000) msg = 'Usuário já existe';
+            return NextResponse.json({ success: false, error: msg }, { status: 500 });
         }
     }
 

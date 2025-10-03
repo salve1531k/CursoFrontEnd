@@ -1,5 +1,5 @@
-"use-client";
-import router, { useRouter } from "next/router";
+"use client";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
  // responsavel pela interação do usuario
@@ -9,7 +9,7 @@ export default function LoginPage(){
     const [password, setPassword] = useState(""); // campo para digitar a senha
     const [error, setError] = useState(""); // mensagem de erro 
 
-    const route = useRouter(); //rotas de navegção
+    const router = useRouter(); //rotas de navegação
 
     //método para enviar o login
     const handleSubmit = async (e: React.FormEvent)=>{
